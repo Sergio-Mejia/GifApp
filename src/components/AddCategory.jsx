@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export const AddCategory = () => {
-  const [inputValue, setInputValue] = useState("The Office");
+export const AddCategory = ({setCategories}) => {
+  const [inputValue, setInputValue] = useState('');
 
   const onInputChange = ({ target }) => {
     setInputValue(target.value);
@@ -9,7 +9,14 @@ export const AddCategory = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(inputValue);
+    //No aceptar una letra o enviar mensajes sin contenido
+    if( inputValue.trim().length <= 1) return;
+
+    //Obtener las categorias anteriores y agregar una nueva
+    setCategories( (categories) => [inputValue, ...categories]);
+
+    //Limpiar caja de texto
+    setInputValue('');
   }
 
   return (
