@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export const AddCategory = ({setCategories}) => {
-  const [inputValue, setInputValue] = useState('');
+export const AddCategory = ({ onNewCategory }) => {
+  const [inputValue, setInputValue] = useState("");
 
   const onInputChange = ({ target }) => {
     setInputValue(target.value);
@@ -10,23 +10,24 @@ export const AddCategory = ({setCategories}) => {
   const onSubmit = (event) => {
     event.preventDefault();
     //No aceptar una letra o enviar mensajes sin contenido
-    if( inputValue.trim().length <= 1) return;
+    if (inputValue.trim().length <= 1) return;
 
     //Obtener las categorias anteriores y agregar una nueva
-    setCategories( (categories) => [inputValue, ...categories]);
+    // setCategories((categories) => [inputValue, ...categories]);
+    onNewCategory(inputValue.trim());
 
     //Limpiar caja de texto
-    setInputValue('');
-  }
+    setInputValue("");
+  };
 
   return (
-    <form action="" onSubmit={ onSubmit }>
-        <input 
-          type="text"
-          placeholder="Buscar Gifts"
-          value={inputValue}
-          onChange={onInputChange}
-        />
+    <form action="" onSubmit={onSubmit}>
+      <input
+        type="text"
+        placeholder="Buscar Gifts"
+        value={inputValue}
+        onChange={onInputChange}
+      />
     </form>
   );
 };
