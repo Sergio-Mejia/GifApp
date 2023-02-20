@@ -5,6 +5,9 @@ export const GifExpertApp = () => {
   const [categories, setCategories] = useState(["The Office", "React"]);
 
   const onAddCategory = (newCategory) => {
+
+    //Si la categoria ya existe, no hacer nada
+    if( categories.includes( newCategory )) return; 
     // categories.push( newCategory);
     setCategories([newCategory, ...categories]);
   };
@@ -21,7 +24,7 @@ export const GifExpertApp = () => {
 
       {/* listado de Gif */}
       <ol>
-        {categories.map((category) => {
+        {categories.map((category, index ) => {
           return <li key={category}>{category}</li>;
         })}
       </ol>
