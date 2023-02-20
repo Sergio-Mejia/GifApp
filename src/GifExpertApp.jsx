@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { AddCategory } from "./components/AddCategory";
+import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
   const [categories, setCategories] = useState(["The Office", "React"]);
 
   const onAddCategory = (newCategory) => {
-
     //Si la categoria ya existe, no hacer nada
-    if( categories.includes( newCategory )) return; 
+    if (categories.includes(newCategory)) return;
     // categories.push( newCategory);
     setCategories([newCategory, ...categories]);
   };
@@ -16,18 +16,14 @@ export const GifExpertApp = () => {
     <>
       <h1>GifExpertApp</h1>
 
-      {/* input */}
-      <AddCategory
-        // setCategories={setCategories}
-        onNewCategory={(event) => onAddCategory(event)}
-      />
+
+      <AddCategory onNewCategory={(event) => onAddCategory(event)} />
+
 
       {/* listado de Gif */}
-      <ol>
-        {categories.map((category, index ) => {
-          return <li key={category}>{category}</li>;
-        })}
-      </ol>
+      {categories.map((category) => (
+        <GifGrid key={category} category={category} />
+      ))}
     </>
   );
 };
