@@ -3,7 +3,7 @@ import { AddCategory } from "./components/AddCategory";
 import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
-  const [categories, setCategories] = useState(["The Office", "React"]);
+  const [categories, setCategories] = useState(["The Office"]);
 
   const onAddCategory = (newCategory) => {
     //Si la categoria ya existe, no hacer nada
